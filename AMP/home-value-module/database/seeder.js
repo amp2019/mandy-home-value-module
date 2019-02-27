@@ -142,7 +142,7 @@ let LocalHomes = mongoose.model('LocalHomes', localHomes);
 // Insert dummydata into property model
 Property.insertMany(propertyData, (err, data) => { 
   if (err) {
-    console.log('error inserting many documents into properties document', err)
+    console.log('error inserting many documents into properties document', err); 
     return;
   }
   console.log('inserted many documents into mongoose');

@@ -18,5 +18,22 @@ module.exports = {
       }
       res.send(data);
     });
+  },
+  handleSinglePost: (request, response) => {
+    var propId = request.params.propertyId;
+    console.log('PROP ID IN CONTROLLER', propId);
+    var propObj = {id: Number(propId),       
+      zestimationPrice: '2,313,187',
+      startPriceRange: '111,231',
+      endPriceRange: '2,000,0000'
+    };
+    model.postSingleProperty(propObj, (err, data) => {
+      if (err) {
+        console.log('ERR trying to post', err);
+        response.status(400).send();
+      }
+      console.log('POSTED!!!');
+      response.status(201).send(data);
+    });
   }
-}
+};

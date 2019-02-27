@@ -91,5 +91,37 @@ module.exports = {
     Property.find({id}, (err, data) => {
       callback(err, data);
     });
+  },
+  // Adds a single home object to Property
+  saveAProperty: (propObj, callback) => {
+    let query = Property.findOneAndUpdate({id: propObj.id}, {
+      zestimationPrice: propObj.zestimationPrice,
+      startPriceRange: propObj.startPriceRange,
+      endPriceRange: propObj.endPriceRange,
+      // thirtyDayPriceChange: propObj.thirtyDayPriceChange,
+      // oneYearForcast: propObj.oneYearForcast,
+      // propertyLastSalePrice: propObj.propertyLastSalePrice, 
+      // propertLastSaleDate: propObj.propertLastSaleDate,
+      // comparableHomePrice: propObj.comparableHomePrice,
+      // marketAppreciationPrice: propObj.marketAppreciationPrice,
+      // localSalesAvg: propObj.localSalesAvg,
+      // sellDate: propObj.sellDate, 
+      // sellPrice: propObj.sellPrice,
+      // beds: propObj.beds, 
+      // baths: propObj.baths,
+      // sqft: propObj.sqft, 
+      // streetAddress: propObj.streetAddress, 
+      // priceSqft: propObj.priceSqft,
+      // saleToList: propObj.saleToList,
+      // url: propObj.url,
+    }, {upsert: true});
+    query.exec( (err, data) => {
+      if (err) {
+        console.log('DB err', err);
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    });
   }
 };

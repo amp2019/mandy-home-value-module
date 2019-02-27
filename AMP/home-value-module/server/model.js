@@ -40,5 +40,15 @@ module.exports = {
       };
       callback(null, singleProperty);
     });
+  },
+  postSingleProperty: (propObj, callback) => {
+    console.log('on MODEL Side', propObj);
+    db.saveAProperty(propObj, (err, data) => {
+      if (err) {
+        callback(err, null);
+        return;
+      }
+      callback(null, data);
+    });
   }
 };
