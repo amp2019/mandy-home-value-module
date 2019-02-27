@@ -32,7 +32,7 @@ app.get('/api/properties/', controller.handleAllPropertyData);
 // Handle GET request for a single property 
 app.get('/api/properties/:propertyId', controller.handleSinglePropertyData);
 
-app.post('/post/:propertyId', controller.handleSinglePost);
+app.post('/post', controller.handleSinglePost);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
