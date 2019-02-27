@@ -92,8 +92,51 @@ module.exports = {
       callback(err, data);
     });
   },
-  // Adds a single home object to Property
+  // finds home property by ID, if already exists, update all fields
+  // else create a new entry
   saveAProperty: (propObj, callback) => {
+    let query = Property.findOneAndUpdate({id: propObj.id}, {
+      zestimationPrice: propObj.zestimationPrice,
+      startPriceRange: propObj.startPriceRange,
+      endPriceRange: propObj.endPriceRange,
+      thirtyDayPriceChange: propObj.thirtyDayPriceChange,
+      oneYearForcast: propObj.oneYearForcast,
+      propertyLastSalePrice: propObj.propertyLastSalePrice, 
+      propertLastSaleDate: propObj.propertLastSaleDate,
+      comparableHomePrice: propObj.comparableHomePrice,
+      marketAppreciationPrice: propObj.marketAppreciationPrice,
+      localSalesAvg: propObj.localSalesAvg,
+      sellDate: propObj.sellDate, 
+      sellPrice: propObj.sellPrice,
+      beds: propObj.beds, 
+      baths: propObj.baths,
+      sqft: propObj.sqft, 
+      streetAddress: propObj.streetAddress, 
+      priceSqft: propObj.priceSqft,
+      saleToList: propObj.saleToList,
+      url: propObj.url,
+    }, {upsert: true});
+    query.exec( (err, data) => {
+      if (err) {
+        console.log('DB err', err);
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  },
+  deleteAProperty: (propId, callback) => {
+    let query = Property.findOneAndDelete({id: propId});
+    query.exec( (err, data) => {
+      if (err) {
+        console.log('ERR ON DELETE', err);
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  },
+  updateAProperty: (propObj, callback) => {
     let query = Property.findOneAndUpdate({id: propObj.id}, {
       zestimationPrice: propObj.zestimationPrice,
       startPriceRange: propObj.startPriceRange,

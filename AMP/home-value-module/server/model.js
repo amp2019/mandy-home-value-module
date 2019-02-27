@@ -42,8 +42,25 @@ module.exports = {
     });
   },
   postSingleProperty: (propObj, callback) => {
-    console.log('on MODEL Side', propObj);
     db.saveAProperty(propObj, (err, data) => {
+      if (err) {
+        callback(err, null);
+        return;
+      }
+      callback(null, data);
+    });
+  },
+  deleteSingleProperty: (propId, callback) => {
+    db.deleteAProperty(propId, (err, data) => {
+      if (err) {
+        callback(err, null);
+        return;
+      }
+      callback(null, data);
+    });
+  },
+  updateSingleProperty: (propObj, callback) => {
+    db.updateAProperty(propObj, (err, data) => {
       if (err) {
         callback(err, null);
         return;
