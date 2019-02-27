@@ -29,5 +29,17 @@ module.exports = {
       console.log('POSTED!!!');
       response.status(201).send(data);
     });
+  },
+  handleDelete: (request, response) => {
+    var propId = request.params.propertyId;
+    console.log('PROP ID ON CONTROLLER', propId);
+    model.deleteSingleProperty(propId, (err, data) => {
+      if (err) {
+        console.log('ERR trying to delete', err);
+        response.status(400).send();
+      }
+      console.log('DELETED ', propId);
+      response.send(data);
+    });
   }
 };

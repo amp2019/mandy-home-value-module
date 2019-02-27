@@ -34,6 +34,8 @@ app.get('/api/properties/:propertyId', controller.handleSinglePropertyData);
 
 app.post('/post', controller.handleSinglePost);
 
+app.delete('/delete/:propertyId', controller.handleDelete);
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });

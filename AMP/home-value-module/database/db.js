@@ -123,5 +123,17 @@ module.exports = {
         callback(null, data);
       }
     });
+  },
+  deleteAProperty: (propId, callback) => {
+    console.log('PROP ID DB SIDE ', propId);
+    let query = Property.findOneAndDelete({id: propId});
+    query.exec( (err, data) => {
+      if (err) {
+        console.log('ERR ON DELETE', err);
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    });
   }
 };
