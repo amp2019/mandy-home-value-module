@@ -21,7 +21,7 @@ module.exports = {
             comparableHomesData: comparableHomesData,
             localHomesData: localHomesData,
           };
-          console.log('weve fetched all of the data');
+          console.log('fetched all of the data', data);
           callback(null, data); 
         });
       });
@@ -34,6 +34,7 @@ module.exports = {
         return;
       }
       // Grab the results of the query and clean
+      console.log('single Propertyy!!!!', singlePropertyData);
       var singleProperty = {
         singlePropertyData: singlePropertyData
       };
