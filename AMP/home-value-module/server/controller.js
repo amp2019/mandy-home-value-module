@@ -20,13 +20,7 @@ module.exports = {
     });
   },
   handleSinglePost: (request, response) => {
-    var propId = request.params.propertyId;
-    console.log('PROP ID IN CONTROLLER', propId);
-    var propObj = {id: Number(propId),       
-      zestimationPrice: '2,313,187',
-      startPriceRange: '111,231',
-      endPriceRange: '2,000,0000'
-    };
+    var propObj = request.body;
     model.postSingleProperty(propObj, (err, data) => {
       if (err) {
         console.log('ERR trying to post', err);
