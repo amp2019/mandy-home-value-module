@@ -22,13 +22,13 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    // console.log('props propertyID', this.props.propertyId);
+    console.log('props propertyID', this.props.propertyId);
     // default property ID for page load 
     let propsId = this.props.propertyId;
     if (!propsId) {
       propsId = 1;
     }
-    // console.log('after', propsId);
+    console.log('after', propsId);
     fetch(`http://localhost:8081/api/properties/${propsId}`)
       .then((response) => {
         return response.json();
