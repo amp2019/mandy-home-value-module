@@ -11,6 +11,7 @@
     "react-dev": "webpack -d --watch ",
     "start": "node server/index.js",
     "seed-db": "node database/seeder.js",
+    "seed-pgsql": "psql postgres -U root < schema.sql",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
