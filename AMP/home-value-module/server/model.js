@@ -21,7 +21,6 @@ module.exports = {
             comparableHomesData: comparableHomesData,
             localHomesData: localHomesData,
           };
-          console.log('fetched all of the data', data);
           callback(null, data); 
         });
       });

@@ -18,9 +18,9 @@ app.use('/', serve);
 app.use(bodyParser.json());
 
 // Handle GET request for index.html
-// app.get('/:propertyId', (req, res) => {
-//   res.sendfile(path.resolve(__dirname + '/../public/dist/index.html'));
-// });
+app.get('/:propertyId', (req, res) => {
+  res.sendfile(path.resolve(__dirname + '/../public/dist/index.html'));
+});
 
 // Handle GET request for all properties 
 app.get('/api/properties/', controller.handleAllPropertyData);
