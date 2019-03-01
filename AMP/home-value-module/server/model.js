@@ -1,4 +1,8 @@
-const db = require('../database/db.js');
+// for mongo
+// const db = require('../database/db.js');
+
+// for postgresql
+const db = require('../database/db_sql.js');
 
 module.exports = {
   fetchAllPropertyData: (callback) => {
@@ -37,6 +41,7 @@ module.exports = {
       var singleProperty = {
         singlePropertyData: singlePropertyData
       };
+      console.log('FROM MODEL singleProperty', singleProperty);
       callback(null, singleProperty);
     });
   },
