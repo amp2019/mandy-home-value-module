@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const faker = require('faker');
 
-mongoose.connect('mongodb+srv://john:zillowtalk@zillow-talk-db-ujzgi.mongodb.net/test?retryWrites=true');
+// mongoose.connect('mongodb+srv://john:zillowtalk@zillow-talk-db-ujzgi.mongodb.net/test?retryWrites=true');
+
+mongoose.connect('mongodb://localhost/homes');
 
 // Initialize mongodb schema
 const Schema = mongoose.Schema;
@@ -140,7 +142,7 @@ let LocalHomes = mongoose.model('LocalHomes', localHomes);
 // Insert dummydata into property model
 Property.insertMany(propertyData, (err, data) => { 
   if (err) {
-    console.log('error inserting many documents into properties document', err)
+    console.log('error inserting many documents into properties document', err); 
     return;
   }
   console.log('inserted many documents into mongoose');

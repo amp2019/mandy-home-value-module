@@ -1,4 +1,8 @@
-const db = require('../database/db.js');
+// for mongo
+// const db = require('../database/db.js');
+
+// for postgresql
+const db = require('../database/db_sql.js');
 
 module.exports = {
   fetchAllPropertyData: (callback) => {
@@ -21,7 +25,6 @@ module.exports = {
             comparableHomesData: comparableHomesData,
             localHomesData: localHomesData,
           };
-          console.log('weve fetched all of the data');
           callback(null, data); 
         });
       });
@@ -34,10 +37,39 @@ module.exports = {
         return;
       }
       // Grab the results of the query and clean
+      console.log('single Propertyy!!!!', singlePropertyData);
       var singleProperty = {
         singlePropertyData: singlePropertyData
       };
+      console.log('FROM MODEL singleProperty', singleProperty);
       callback(null, singleProperty);
+    });
+  },
+  postSingleProperty: (propObj, callback) => {
+    db.saveAProperty(propObj, (err, data) => {
+      if (err) {
+        callback(err, null);
+        return;
+      }
+      callback(null, data);
+    });
+  },
+  deleteSingleProperty: (propId, callback) => {
+    db.deleteAProperty(propId, (err, data) => {
+      if (err) {
+        callback(err, null);
+        return;
+      }
+      callback(null, data);
+    });
+  },
+  updateSingleProperty: (propObj, callback) => {
+    db.updateAProperty(propObj, (err, data) => {
+      if (err) {
+        callback(err, null);
+        return;
+      }
+      callback(null, data);
     });
   }
 };

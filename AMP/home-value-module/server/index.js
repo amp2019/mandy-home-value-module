@@ -23,14 +23,17 @@ app.get('/:propertyId', (req, res) => {
 });
 
 // Handle GET request for all properties 
-app.get('/api/properties/', controller.handleAllPropertyData);
+// app.get('/api/properties/', controller.handleAllPropertyData);
 
-app.get('/:propertyId', (req, res) => {
-  res.redirect(`/index.html?propertyId=${req.params.productID}`);
-});
 
 // Handle GET request for a single property 
 app.get('/api/properties/:propertyId', controller.handleSinglePropertyData);
+
+app.post('/post', controller.handleSinglePost);
+
+app.delete('/delete/:propertyId', controller.handleDelete);
+
+app.put('/update', controller.handleUpdate);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
