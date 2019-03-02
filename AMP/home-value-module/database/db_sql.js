@@ -10,7 +10,7 @@ const pool = new Pool({
 // Query to grab data for all properties 
 module.exports = {
   readSingleProperty: (id, callback) => {
-    let queryStr = 'SELECT * FROM homes WHERE id = ' + id;
+    let queryStr = 'SELECT * FROM homes2 WHERE id = ' + id;
     pool.query(queryStr, (err, data) => {
       if (err) {
         console.log('ERR IN DB', err);

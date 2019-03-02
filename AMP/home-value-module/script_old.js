@@ -1,4 +1,11 @@
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
 const faker = require('faker');
+
+// // output file in the same folder
+const filename = path.join(__dirname, 'output2.csv');
+const output = []; // holds all rows of data
 
 var numberWithCommas = (num) => {
   num = num.toString();
@@ -9,12 +16,11 @@ var numberWithCommas = (num) => {
   return num;
 };
 
-// const data = [];
+const data = [];
 
-for (let i = 1; i < 10000000; i++) {
+for (let i = 1; i < 1000; i++) {
   var obj = {
-    id: i, 
-    zestimationPrice: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})), 
+    zestimationPrice: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
     startPriceRange: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
     endPriceRange: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
     thirtyDayPriceChange: numberWithCommas(faker.random.number({'min': 15000, 'max': 50000})),
@@ -34,29 +40,31 @@ for (let i = 1; i < 10000000; i++) {
     saleToList: faker.random.number({'min': 91, 'max': 105}),
     url: `https://s3-us-west-1.amazonaws.com/zillow-talk-home-component/large${i%100 + 1}.jpg`
   };
-  // tab delimiter '\t' is for Mongo
-  // for Postgres, replace with pipe '|'
-
-  let outputStr =  
-  obj.id + '\t' +
-  obj.zestimationPrice + '\t' + 
-  obj.startPriceRange + '\t' +
-  obj.endPriceRange + '\t' +
-  obj.thirtyDayPriceChange + '\t' + 
-  obj.oneYearForcast + '\t' + 
-  obj.propertyLastSalePrice + '\t' + 
-  obj.propertLastSaleDate + '\t' + 
-  obj.comparableHomePrice + '\t' + 
-  obj.marketAppreciationPrice + '\t' + 
-  obj.localSalesAvg + '\t' + 
-  obj.sellDate + '\t' + 
-  obj.sellPrice + '\t' + 
-  obj.beds + '\t' + 
-  obj.baths + '\t' +
-  obj.sqft + '\t' + 
-  obj.streetAddress + '\t' + 
-  obj.priceSqft + '\t' + 
-  obj.saleToList + '\t' + 
-  obj.url;
-  console.log(outputStr);
+  data.push(obj);
 }
+data.forEach((d) => {
+  const row = []; // a new array for each row of data
+  row.push(d.zestimationPrice);
+  row.push(d.startPriceRange);
+  row.push(d.endPriceRange);
+  row.push(d.thirtyDayPriceChange);
+  row.push(d.oneYearForcast);
+  row.push(d.propertyLastSalePrice);
+  row.push(d.propertLastSaleDate);
+  row.push(d.comparableHomePrice);
+  row.push(d.marketAppreciationPrice);
+  row.push(d.localSalesAvg);
+  row.push(d.sellDate);
+  row.push(d.sellPrice);
+  row.push(d.beds);
+  row.push(d.baths);
+  row.push(d.sqft);
+  row.push(d.streetAddress);
+  row.push(d.priceSqft);
+  row.push(d.saleToList);
+  row.push(d.url);
+  output.push(row.join('|')); // by default, join() uses a ','
+});
+
+
+fs.writeFileSync(filename, output.join(os.EOL));
