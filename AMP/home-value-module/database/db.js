@@ -72,18 +72,26 @@ module.exports = {
   }, 
   // Query to grab data for comparableHomes 
   readAllComparableHomes: (callback) => {
-    ComparableHomes.find((err, data) => {
-      callback(err, data);
-    }).setOptions({
-      limit: 10
+    let query = ComparableHomes.aggregate([{$sample: {size: 10}}]);
+    query.exec( (err, data) => {
+      if (err) {
+        console.log('DB err', err);
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
     });
   }, 
   // Query to grab data for localhomes 
   readAllLocalHomes: (callback) => {
-    LocalHomes.find((err, data) => {
-      callback(err, data);
-    }).setOptions({
-      limit: 10
+    let query = LocalHomes.aggregate([{$sample: {size: 10}}]);
+    query.exec( (err, data) => {
+      if (err) {
+        console.log('DB err', err);
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
     });
   },
   // Query to grab data from a single property 

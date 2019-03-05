@@ -6,7 +6,6 @@ const db = require('../database/db.js');
 
 module.exports = {
   fetchAllPropertyData: (callback) => {
-    console.log('HIT!!!!!!!!!!!!!!!');
     db.readAllProperties((err, propertyData) => {
       if (err) {
         callback(err);
@@ -38,11 +37,9 @@ module.exports = {
         return;
       }
       // Grab the results of the query and clean
-      console.log('single Propertyy!!!!', singlePropertyData);
       var singleProperty = {
         singlePropertyData: singlePropertyData
       };
-      console.log('FROM MODEL singleProperty', singleProperty);
       callback(null, singleProperty);
     });
   },

@@ -7,7 +7,7 @@ module.exports = {
         console.log('error GET request from the controller');
         return;
       }
-      console.log('!!!!! Getting all FROM controller ');
+      console.log('!!!!! Getting all FROM controller ', data);
       res.send(data);
     });
   },
@@ -17,7 +17,7 @@ module.exports = {
       if (err) {
         console.log('error fetching propertyData');
       }
-      console.log('FROM CONTROLLER ', data);
+      // console.log('FROM CONTROLLER ', data);
       res.send(data);
     });
   },
@@ -28,7 +28,7 @@ module.exports = {
         console.log('ERR trying to post', err);
         response.status(400).send();
       }
-      console.log('POSTED!!!');
+      // console.log('POSTED!!!');
       response.status(201).send();
     });
   },
@@ -39,7 +39,7 @@ module.exports = {
         console.log('ERR trying to delete', err);
         response.status(400).send();
       }
-      console.log('DELETED ', propId);
+      // console.log('DELETED ', propId);
       response.send(data);
     });
   },
@@ -50,7 +50,7 @@ module.exports = {
         console.log('ERR trying to update', err);
         response.status(400).send();
       }
-      console.log('Updated record!');
+      // console.log('Updated record!');
       response.status(202).send(data);
     });
   }

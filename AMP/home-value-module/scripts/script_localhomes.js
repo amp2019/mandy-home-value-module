@@ -35,15 +35,15 @@ let generator = (writer, callback) => {
         // for Postgres, replace with pipe '|' & remove id
       
       let outputStr =  
-      obj.id + '|' +
-      obj.sellDate + '|' + 
-      obj.sellPrice + '|' + 
-      obj.beds + '|' + 
-      obj.baths + '|' +
-      obj.sqft + '|' + 
-      obj.streetAddress + '|' + 
-      obj.priceSqft + '|' + 
-      obj.saleToList + '|' + 
+      obj.id + '\t' +
+      obj.sellDate + '\t' + 
+      obj.sellPrice + '\t' + 
+      obj.beds + '\t' + 
+      obj.baths + '\t' +
+      obj.sqft + '\t' + 
+      obj.streetAddress + '\t' + 
+      obj.priceSqft + '\t' + 
+      obj.saleToList + '\t' + 
       obj.url + '\n';
       i++;
       if (i === 10000000) {
@@ -64,7 +64,7 @@ let generator = (writer, callback) => {
 };
 
 // defines a path and create a writeable stream
-const writer = fs.createWriteStream('./local.csv');
+const writer = fs.createWriteStream('./local.txt');
 
 // invoke generator function, passing in console log as the callback
 generator(writer, console.log);

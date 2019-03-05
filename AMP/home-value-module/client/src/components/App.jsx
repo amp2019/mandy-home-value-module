@@ -43,6 +43,8 @@ class App extends React.Component {
         return response.json();
       })
       .then((data) => {
+        console.log('COMP HOMES ', data.comparableHomesData);
+        console.log('local HOMES ', data.localHomesData);
         this.setState({
           comparableHomesData: data.comparableHomesData,
           localHomesData: data.localHomesData,
