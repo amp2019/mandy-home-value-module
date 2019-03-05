@@ -1,11 +1,12 @@
 // for mongo
-// const db = require('../database/db.js');
+const db = require('../database/db.js');
 
 // for postgresql
-const db = require('../database/db_sql.js');
+// const db = require('../database/db_sql.js');
 
 module.exports = {
   fetchAllPropertyData: (callback) => {
+    console.log('HIT!!!!!!!!!!!!!!!');
     db.readAllProperties((err, propertyData) => {
       if (err) {
         callback(err);
