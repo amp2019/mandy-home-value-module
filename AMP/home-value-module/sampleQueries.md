@@ -148,14 +148,44 @@ db.properties.find({id: 9000030}).pretty().explain("executionStats")
 	"executionStats" : {
 		"executionSuccess" : true,
 		"nReturned" : 1,
-		"executionTimeMillis" : 0,
+		"executionTimeMillis" : 2,
 		"totalKeysExamined" : 1,
 		"totalDocsExamined" : 1,
 	},
 }
 ```
+## Sample Query 2 - UPDATE a home based on ID
 
-db.properties.findOneAndUpdate({id: 9000030}, {
+`db.properties.findOneAndUpdate({id: 9000030}, 
+{ $set:
+	{ "zestimationPrice" : "5,328,111",
+	"startPriceRange" : "1,000,000",
+	"endPriceRange" : "5,004,650",
+	"thirtyDayPriceChange" : "30,711",
+	"oneYearForcast" : "6,000,000",
+	"propertyLastSalePrice" : "900,000",
+	"propertLastSaleDate" : "8/7/1999",
+	"comparableHomePrice" : "4,220,000",
+	"marketAppreciationPrice" : "500,000",
+	"localSalesAvg" : "2,000,000",
+	"sellDate" : "N/A",
+	"sellPrice" : "N/A",
+	"beds" : 7,
+	"baths" : 5,
+	"sqft" : "8,000",
+	"streetAddress" : "9871 Rich Ave",
+	"priceSqft" : "2,000",
+	"saleToList" : 91,
+	"url" : "https://s3-us-west-1.amazonaws.com/zillow-talk-home-component/large31.jpg"
+  }
+}, {upsert: true})`
+
+## Results
+```
+> db.properties.find({id: 9000030}).pretty()
+{
+	"_id" : ObjectId("5c7ac97675779ad8b4ad2493"),
+	"id" : 9000030,
 	"zestimationPrice" : "5,328,111",
 	"startPriceRange" : "1,000,000",
 	"endPriceRange" : "5,004,650",
@@ -175,4 +205,4 @@ db.properties.findOneAndUpdate({id: 9000030}, {
 	"priceSqft" : "2,000",
 	"saleToList" : 91,
 	"url" : "https://s3-us-west-1.amazonaws.com/zillow-talk-home-component/large31.jpg"
-    }, {upsert: true})
+}

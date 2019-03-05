@@ -3,6 +3,10 @@ output2.csv
 mongoScript.txt
 outputNew.csv
 outputNew.txt
+outputNew2.txt
+outputNew2.csv
+local.txt
+comp.txt
 public/dist/bundle.js
 node_modules
 .DS_Store 

@@ -7,6 +7,7 @@ module.exports = {
         console.log('error GET request from the controller');
         return;
       }
+      console.log('!!!!! Getting all FROM controller ');
       res.send(data);
     });
   },

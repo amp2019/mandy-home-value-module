@@ -26,6 +26,31 @@ CREATE TABLE homes2 (
   "url" VARCHAR(200)
 );
 
+CREATE TABLE comparable (
+  id SERIAL PRIMARY KEY,
+  "sellDate" VARCHAR(20),
+  "sellPrice" VARCHAR(20),
+  "beds" INTEGER,
+  "baths" INTEGER,
+  "sqft" VARCHAR(20),
+  "streetAddress" VARCHAR(200),
+  "priceSqft" VARCHAR(20),
+  "url" VARCHAR(200)
+);
+
+CREATE TABLE local (
+  id SERIAL PRIMARY KEY,
+  "sellDate" VARCHAR(20),
+  "sellPrice" VARCHAR(20),
+  "beds" INTEGER,
+  "baths" INTEGER,
+  "sqft" VARCHAR(20),
+  "streetAddress" VARCHAR(200),
+  "priceSqft" VARCHAR(20),
+  "saleToList" VARCHAR(20),
+  "url" VARCHAR(200)
+)
+
 INSERT INTO homes ("zestimationPrice", "startPriceRange", 
 "endPriceRange", "thirtyDayPriceChange", "oneYearForcast", "propertyLastSalePrice", "propertLastSaleDate", "comparableHomePrice", "marketAppreciationPrice", "localSalesAvg", "sellDate", "sellPrice", "beds", "baths", "sqft", "streetAddress", "priceSqft", "saleToList", "url") VALUES ('123,456', '110,000', '120,000', '20,000', '200,000', '100,000', '2/1/1990', '120,000', '50,000', '120,000', 'N/A', 'N/A', 2, 2, '1000', '2222 Woohoo Ave', '200', 91, 'https://s3-us-west-1.amazonaws.com/zillow-talk-home-component/large20.jpg');
 
