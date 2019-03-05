@@ -23,7 +23,7 @@ app.get('/:propertyId', (req, res) => {
 });
 
 // Handle GET request for all properties 
-// app.get('/api/properties/', controller.handleAllPropertyData);
+app.get('/api/properties/', controller.handleAllPropertyData);
 
 
 // Handle GET request for a single property 
