@@ -23,13 +23,13 @@ module.exports = {
   },
   handleSinglePost: (request, response) => {
     var propObj = request.body;
-    model.postSingleProperty(propObj, (err, data) => {
+    model.postSingleProperty(propObj, (err) => {
       if (err) {
         console.log('ERR trying to post', err);
         response.status(400).send();
       }
       console.log('POSTED!!!');
-      response.status(201).send(data);
+      response.status(201).send();
     });
   },
   handleDelete: (request, response) => {

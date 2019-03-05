@@ -31,19 +31,19 @@ let generator = (writer, callback) => {
         saleToList: faker.random.number({'min': 91, 'max': 105}),
         url: `https://s3-us-west-1.amazonaws.com/zillow-talk-home-component/large${i%100 + 1}.jpg`
       };
-        // tab delimiter '\t' is for Mongo
+        // tab delimiter '|' is for Mongo
         // for Postgres, replace with pipe '|' & remove id
       
       let outputStr =  
-      obj.id + '\t' +
-      obj.sellDate + '\t' + 
-      obj.sellPrice + '\t' + 
-      obj.beds + '\t' + 
-      obj.baths + '\t' +
-      obj.sqft + '\t' + 
-      obj.streetAddress + '\t' + 
-      obj.priceSqft + '\t' + 
-      obj.saleToList + '\t' + 
+      obj.id + '|' +
+      obj.sellDate + '|' + 
+      obj.sellPrice + '|' + 
+      obj.beds + '|' + 
+      obj.baths + '|' +
+      obj.sqft + '|' + 
+      obj.streetAddress + '|' + 
+      obj.priceSqft + '|' + 
+      obj.saleToList + '|' + 
       obj.url + '\n';
       i++;
       if (i === 10000000) {
@@ -64,7 +64,7 @@ let generator = (writer, callback) => {
 };
 
 // defines a path and create a writeable stream
-const writer = fs.createWriteStream('./local.txt');
+const writer = fs.createWriteStream('./local.csv');
 
 // invoke generator function, passing in console log as the callback
 generator(writer, console.log);

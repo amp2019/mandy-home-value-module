@@ -6,7 +6,9 @@ outputNew.txt
 outputNew2.txt
 outputNew2.csv
 local.txt
+local.csv
 comp.txt
+comp.csv
 public/dist/bundle.js
 node_modules
 .DS_Store 
