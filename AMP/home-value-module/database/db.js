@@ -9,7 +9,7 @@ const ObjectId = Schema.ObjectId;
 
 // Create db schema for properties
 let propertySchema = new Schema({
-  id: Number,
+  _id: String,
   zestimationPrice: String,
   startPriceRange: String,
   endPriceRange: String,
@@ -32,7 +32,7 @@ let propertySchema = new Schema({
 });
 
 let comparableHomes = new Schema({
-  id: Number,
+  _id: String,
   sellDate: String, 
   sellPrice: String,
   beds: Number, 
@@ -44,7 +44,7 @@ let comparableHomes = new Schema({
 });
 
 let localHomes = new Schema({
-  id: Number,
+  _id: String,
   sellDate: String, 
   sellPrice: String,
   beds: Number, 
@@ -96,14 +96,26 @@ module.exports = {
   },
   // Query to grab data from a single property 
   readSingleProperty: (id, callback) => {
-    Property.find({id}, (err, data) => {
-      callback(err, data);
+    let propId = id.toString();
+    // console.log('propid !!', typeof propId);
+    let query = Property.find({"_id": propId});
+    query.exec( (err, data) => {
+      if (err) {
+        console.log('MONGO err', err);
+        callback(err, null);
+      } else {
+        console.log('!!!!!!!!!!', data);
+        callback(null, data);
+      }
     });
   },
   // finds home property by ID, if already exists, update all fields
   // else create a new entry
   saveAProperty: (propObj, callback) => {
-    let query = Property.findOneAndUpdate({id: propObj.id}, {
+    let propId = propObj._id;
+    console.log('propObj is ', propObj);
+    console.log('SAVE propId', propId);
+    let query = Property.findOneAndUpdate({"_id": propId}, {
       zestimationPrice: propObj.zestimationPrice,
       startPriceRange: propObj.startPriceRange,
       endPriceRange: propObj.endPriceRange,
@@ -134,7 +146,7 @@ module.exports = {
     });
   },
   deleteAProperty: (propId, callback) => {
-    let query = Property.findOneAndDelete({id: propId});
+    let query = Property.findOneAndDelete({_id: propId});
     query.exec( (err, data) => {
       if (err) {
         console.log('ERR ON DELETE', err);
@@ -145,7 +157,8 @@ module.exports = {
     });
   },
   updateAProperty: (propObj, callback) => {
-    let query = Property.findOneAndUpdate({id: propObj.id}, {
+    let propId = propObj._id;
+    let query = Property.findOneAndUpdate({"_id": propId}, {
       zestimationPrice: propObj.zestimationPrice,
       startPriceRange: propObj.startPriceRange,
       endPriceRange: propObj.endPriceRange,

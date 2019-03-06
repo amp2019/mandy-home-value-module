@@ -44,7 +44,7 @@ module.exports = {
       '${propObj.sqft}',
       '${propObj.streetAddress}',
       '${propObj.priceSqft}',
-      '${propObj.saleToList}',
+      '${propObj.saleToList}',  
       '${propObj.url}') 
     ON CONFLICT("id") 
     DO UPDATE SET 

@@ -20,7 +20,7 @@ let generator = (writer, callback) => {
     let ok = true;
     do {
       let obj = {
-        id: i,
+        id: i + '',
         sellDate: `${faker.random.number({'min': 0, 'max': 12})}/${faker.random.number({'min': 0, 'max': 30})}/${faker.random.number({'min': 2010, 'max': 2019})}`,
         sellPrice: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
         beds: faker.random.number({'min': 2, 'max': 6}),

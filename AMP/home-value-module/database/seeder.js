@@ -20,7 +20,7 @@ var numberWithCommas = (num) => {
 
 // Create db schema for properties
 let propertySchema = new Schema({
-  id: Number,
+  _id: String,
   zestimationPrice: String,
   startPriceRange: String,
   endPriceRange: String,
@@ -43,7 +43,7 @@ let propertySchema = new Schema({
 });
 
 let comparableHomes = new Schema({
-  id: {type: Number},
+  _id: {type: String},
   sellDate: String, 
   sellPrice: String,
   beds: Number, 
@@ -55,7 +55,7 @@ let comparableHomes = new Schema({
 });
 
 let localHomes = new Schema({
-  id: {type: Number},
+  _id: {type: String},
   sellDate: String, 
   sellPrice: String,
   beds: Number, 
@@ -77,7 +77,7 @@ var localHomesData = [];
 // Generate a list of fake property data with 100 items 
 for (let i = 1; i < 100; i++) {
   var obj = {
-    id: i, 
+    _id: i + '', 
     zestimationPrice: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})), 
     startPriceRange: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
     endPriceRange: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
@@ -104,7 +104,7 @@ for (let i = 1; i < 100; i++) {
 // Generate a list of fake comparable data with 100 items
 for (let i = 1; i < 100; i++) {
   var obj = {
-    id: i,
+    _id: i + '',
     sellDate: `${faker.random.number({'min': 0, 'max': 12})}/${faker.random.number({'min': 0, 'max': 30})}/${faker.random.number({'min': 2010, 'max': 2019})}`,
     sellPrice: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
     beds: faker.random.number({'min': 2, 'max': 6}),
@@ -120,7 +120,7 @@ for (let i = 1; i < 100; i++) {
 // Generate a list of face local home data with 100 items
 for (let i = 1; i < 100; i++) {
   var obj = {
-    id: i,
+    _id: i + '',
     sellDate: `${faker.random.number({'min': 0, 'max': 12})}/${faker.random.number({'min': 0, 'max': 30})}/${faker.random.number({'min': 2010, 'max': 2019})}`,
     sellPrice: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
     beds: faker.random.number({'min': 2, 'max': 6}),

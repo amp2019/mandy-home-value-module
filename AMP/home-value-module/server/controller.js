@@ -17,7 +17,7 @@ module.exports = {
       if (err) {
         console.log('error fetching propertyData');
       }
-      // console.log('FROM CONTROLLER ', data);
+      console.log('FROM CONTROLLER ', data);
       res.send(data);
     });
   },

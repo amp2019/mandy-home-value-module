@@ -20,7 +20,7 @@ let generator = (writer, callback) => {
     let ok = true;
     do {
       let obj = {
-        id: i, 
+        _id: i + '', 
         zestimationPrice: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})), 
         startPriceRange: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
         endPriceRange: numberWithCommas(faker.random.number({'min': 500000, 'max': 5000000})),
@@ -45,7 +45,7 @@ let generator = (writer, callback) => {
         // for Postgres, replace with pipe '|' & remove id
       
       let outputStr =  
-      obj.id + '\t' +
+      obj._id + '\t' +
       obj.zestimationPrice + '\t' + 
       obj.startPriceRange + '\t' +
       obj.endPriceRange + '\t' +
@@ -84,7 +84,7 @@ let generator = (writer, callback) => {
 };
 
 // defines a path and create a writeable stream
-const writer = fs.createWriteStream('./outputNew2.txt');
+const writer = fs.createWriteStream('./prop.txt');
 
 // invoke generator function, passing in console log as the callback
 generator(writer, console.log);

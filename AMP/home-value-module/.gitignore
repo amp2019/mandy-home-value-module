@@ -9,6 +9,7 @@ local.txt
 local.csv
 comp.txt
 comp.csv
+prop.txt
 public/dist/bundle.js
 node_modules
 .DS_Store 

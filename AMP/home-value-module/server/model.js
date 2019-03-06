@@ -31,6 +31,7 @@ module.exports = {
     });
   },
   fetchSinglePropertyData: (id, callback) => {
+    console.log('ID ON MODEL IS ', id);
     db.readSingleProperty(id, (err, singlePropertyData) => {
       if (err) {
         callback(err);
@@ -40,6 +41,8 @@ module.exports = {
       var singleProperty = {
         singlePropertyData: singlePropertyData
       };
+
+      console.log('FROM MODEL ', singleProperty);
       callback(null, singleProperty);
     });
   },
