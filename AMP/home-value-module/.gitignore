@@ -10,6 +10,7 @@ local.csv
 comp.txt
 comp.csv
 prop.txt
+newRelicConfig.js
 public/dist/bundle.js
 node_modules
 .DS_Store 

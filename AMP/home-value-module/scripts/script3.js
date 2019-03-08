@@ -15,6 +15,8 @@ var numberWithCommas = (num) => {
 
 let generator = (writer, callback) => {
   let i = 1;
+  let header = '_id|zestimationPrice|startPriceRange|endPriceRange|thirtyDayPriceChange|oneYearForcast|propertyLastSalePrice|propertLastSaleDate|comparableHomePrice|marketAppreciationPrice|localSalesAvg|sellDate|sellPrice|beds|baths|sqft|streetAddress|priceSqft|saleToList|url \n';
+  writer.write(header);
   write();
   function write() {
     let ok = true;
@@ -45,28 +47,28 @@ let generator = (writer, callback) => {
         // for Postgres, replace with pipe '|' & remove id
       
       let outputStr =  
-      obj._id + '\t' +
-      obj.zestimationPrice + '\t' + 
-      obj.startPriceRange + '\t' +
-      obj.endPriceRange + '\t' +
-      obj.thirtyDayPriceChange + '\t' + 
-      obj.oneYearForcast + '\t' + 
-      obj.propertyLastSalePrice + '\t' + 
-      obj.propertLastSaleDate + '\t' + 
-      obj.comparableHomePrice + '\t' + 
-      obj.marketAppreciationPrice + '\t' + 
-      obj.localSalesAvg + '\t' + 
-      obj.sellDate + '\t' + 
-      obj.sellPrice + '\t' + 
-      obj.beds + '\t' + 
-      obj.baths + '\t' +
-      obj.sqft + '\t' + 
-      obj.streetAddress + '\t' + 
-      obj.priceSqft + '\t' + 
-      obj.saleToList + '\t' + 
+      obj._id + '|' +
+      obj.zestimationPrice + '|' + 
+      obj.startPriceRange + '|' +
+      obj.endPriceRange + '|' +
+      obj.thirtyDayPriceChange + '|' + 
+      obj.oneYearForcast + '|' + 
+      obj.propertyLastSalePrice + '|' + 
+      obj.propertLastSaleDate + '|' + 
+      obj.comparableHomePrice + '|' + 
+      obj.marketAppreciationPrice + '|' + 
+      obj.localSalesAvg + '|' + 
+      obj.sellDate + '|' + 
+      obj.sellPrice + '|' + 
+      obj.beds + '|' + 
+      obj.baths + '|' +
+      obj.sqft + '|' + 
+      obj.streetAddress + '|' + 
+      obj.priceSqft + '|' + 
+      obj.saleToList + '|' + 
       obj.url + '\n';
       i++;
-      if (i === 10000000) {
+      if (i === 100) {
         // last time!
         writer.write(outputStr, () => callback('successfully written data to file'));
       } else {
@@ -74,7 +76,7 @@ let generator = (writer, callback) => {
         // don't pass the callback, because we're not done yet.
         ok = writer.write(outputStr);
       }
-    } while (i <= 10000000 && ok);
+    } while (i <= 100 && ok);
     if (i > 0) {
       // had to stop early!
       // write some more once it drains
@@ -84,7 +86,7 @@ let generator = (writer, callback) => {
 };
 
 // defines a path and create a writeable stream
-const writer = fs.createWriteStream('./prop.txt');
+const writer = fs.createWriteStream('./artilleryData.csv');
 
 // invoke generator function, passing in console log as the callback
 generator(writer, console.log);
