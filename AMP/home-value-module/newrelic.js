@@ -1,5 +1,5 @@
 'use strict'
-const secretKey = require('./newRelicConfig.js')
+const key = require('./newRelicConfig.js')
 /**
  * New Relic agent configuration.
  *
@@ -10,11 +10,11 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['House Value Component'],
+  app_name: ['Home Value'],
   /**
    * Your New Relic license key.
    */
-  license_key: secretKey,
+  license_key: key,
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing

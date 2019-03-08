@@ -1,7 +1,4 @@
 {
-  "name": "john-sprague-component-home-value",
-  "description": "Front end capstone project, buy a home from zillow.com, home value component.",
-  "author": "John Sprague",
   "license": "ISC",
   "main": "index.js",
   "engines": {
