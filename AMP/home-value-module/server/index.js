@@ -8,7 +8,7 @@ const app = express();
 const port = 8081;
 const serve = express.static('./public/dist');
 
-// CORS 
+// CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -23,11 +23,11 @@ app.get('/:propertyId', (req, res) => {
   res.sendfile(path.resolve(__dirname + '/../public/dist/index.html'));
 });
 
-// Handle GET request for all properties 
+// Handle GET request for all properties
 app.get('/api/properties/', controller.handleAllPropertyData);
 
 
-// Handle GET request for a single property 
+// Handle GET request for a single property
 app.get('/api/properties/:propertyId', controller.handleSinglePropertyData);
 
 app.post('/post', controller.handleSinglePost);

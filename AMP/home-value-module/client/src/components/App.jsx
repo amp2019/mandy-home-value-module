@@ -29,7 +29,7 @@ class App extends React.Component {
       propsId = 1;
     }
     console.log('after', propsId);
-    fetch(`http://localhost:8081/api/properties/${propsId}`)
+    fetch(`/api/properties/${propsId}`)
       .then((response) => {
         return response.json();
       })
@@ -38,7 +38,7 @@ class App extends React.Component {
           propertyData: data.singlePropertyData
         });
       });
-    fetch('http://localhost:8081/api/properties')
+    fetch('/api/properties')
       .then((response) => {
         return response.json();
       })

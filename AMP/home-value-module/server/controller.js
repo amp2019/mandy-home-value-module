@@ -13,6 +13,7 @@ module.exports = {
   },
   handleSinglePropertyData: (req, res) => {
     var propertyId = req.params.propertyId;
+    console.log('ID FROM 8081 ', req.params.propertyId)
     model.fetchSinglePropertyData(propertyId, (err, data) => {
       if (err) {
         console.log('error fetching propertyData');
@@ -23,17 +24,19 @@ module.exports = {
   },
   handleSinglePost: (request, response) => {
     var propObj = request.body;
+    console.log('object received on 8081 ', propObj)
     model.postSingleProperty(propObj, (err) => {
       if (err) {
         console.log('ERR trying to post', err);
         response.status(400).send();
       }
-      // console.log('POSTED!!!');
+      console.log('POSTED!!!');
       response.status(201).send();
     });
   },
   handleDelete: (request, response) => {
     var propId = request.params.propertyId;
+    console.log('HIT 8081, id is ', propId)
     model.deleteSingleProperty(propId, (err, data) => {
       if (err) {
         console.log('ERR trying to delete', err);
