@@ -1,14 +1,13 @@
 {
-  "name": "john-sprague-component-home-value",
-  "description": "Front end capstone project, buy a home from zillow.com, home value component.",
-  "author": "John Sprague",
+  "name": "home-value",
+  "description": " buy a home from zillow.com, home value component.",
   "license": "ISC",
   "main": "index.js",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
-    "react-dev": "webpack -d --watch ",
+    "react-dev": "webpack -p",
     "start": "node server/index.js",
     "seed-db": "node database/seeder.js",
     "seed-pgsql": "psql postgres -U root < schema.sql",

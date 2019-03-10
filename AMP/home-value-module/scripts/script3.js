@@ -14,7 +14,7 @@ var numberWithCommas = (num) => {
 // Write the data to the supplied writable stream 10 million times.
 
 let generator = (writer, callback) => {
-  let i = 1;
+  let i = 11000001;
   write();
   function write() {
     let ok = true;
@@ -66,7 +66,7 @@ let generator = (writer, callback) => {
       obj.saleToList + '\t' + 
       obj.url + '\n';
       i++;
-      if (i === 10000000) {
+      if (i === 12000000) {
         // last time!
         writer.write(outputStr, () => callback('successfully written data to file'));
       } else {
@@ -74,7 +74,7 @@ let generator = (writer, callback) => {
         // don't pass the callback, because we're not done yet.
         ok = writer.write(outputStr);
       }
-    } while (i <= 10000000 && ok);
+    } while (i <= 12000000 && ok);
     if (i > 0) {
       // had to stop early!
       // write some more once it drains

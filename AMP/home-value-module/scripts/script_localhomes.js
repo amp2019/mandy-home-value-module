@@ -46,7 +46,7 @@ let generator = (writer, callback) => {
       obj.saleToList + '\t' + 
       obj.url + '\n';
       i++;
-      if (i === 10000000) {
+      if (i === 1000000) {
         // last time!
         writer.write(outputStr, () => callback('successfully written data to file'));
       } else {
@@ -54,7 +54,7 @@ let generator = (writer, callback) => {
         // don't pass the callback, because we're not done yet.
         ok = writer.write(outputStr);
       }
-    } while (i <= 10000000 && ok);
+    } while (i <= 1000000 && ok);
     if (i > 0) {
       // had to stop early!
       // write some more once it drains

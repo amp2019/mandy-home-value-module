@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const controller = require('./controller.js');
 
 const app = express();
-const port = 8081;
+const port = 3000;
 const serve = express.static('./public/dist');
 
 // CORS 
