@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 var faker = require('faker');
 // mongoose.connect('mongodb+srv://john:zillowtalk@zillow-talk-db-ujzgi.mongodb.net/test?retryWrites=true');
-mongoose.connect('mongodb://localhost/homes');
+//mongoose.connect('mongodb://localhost/homes');
 
+mongoose.connect('mongodb://root:password@ec2-35-172-136-164.compute-1.amazonaws.com/homes', (err) => {
+  if (err) {
+    console.log('CANNOT CONNECT MONGOOSE', err);
+  }
+});
 // Initialize mongodb schema
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
