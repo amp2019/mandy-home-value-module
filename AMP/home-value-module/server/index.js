@@ -4,6 +4,12 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const controller = require('./controller.js');
 
+
+const db = require('../database/db');
+var redisClient = require('redis').createClient;
+var redis = redisClient(6379, 'localhost');
+
+
 const app = express();
 const port = 8081;
 const serve = express.static('./public/dist');
@@ -30,6 +36,19 @@ app.get('/api/properties/', controller.handleAllPropertyData);
 // Handle GET request for a single property
 app.get('/api/properties/:propertyId', controller.handleSinglePropertyData);
 
+app.get('/api/properties/:propertyId', (request, response) => {
+  let id = request.params.propertyId;
+  console.log('ID from index is ', id);
+
+  db.readSingleProperty(id, redis, (err, data) => {
+    if (err) {
+      console.log(err);
+      response.status(400).send();
+    }
+    console.log('getting data!');
+    response.status(200).send(data);
+  });
+})
 app.post('/post', controller.handleSinglePost);
 
 app.delete('/delete/:propertyId', controller.handleDelete);

@@ -14,4 +14,4 @@ newRelicConfig.js
 newrelic_agent.log
 public/dist/bundle.js
 node_modules
-.DS_Store 
+.DS_Store

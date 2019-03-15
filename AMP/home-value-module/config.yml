@@ -2,7 +2,7 @@ config:
   target: "http://localhost:8081"
   phases:
     - duration: 120 # total duration in seconds
-      arrivalRate: 200 # number of users arriving per second
+      arrivalRate: 300 # number of users arriving per second
   processor: "./dataGenerator.js"
 scenarios:
   - name: "GET request for a single house info"
@@ -10,7 +10,7 @@ scenarios:
     flow:
       - get:
           url: "/api/properties/{{$randomNumber(1, 10000000)}}"
-
+  
   - name: "POST request to save a single house record"
     weight: 20
     flow:

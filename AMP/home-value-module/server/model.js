@@ -6,10 +6,6 @@ const db = require('../database/db.js');
 
 module.exports = {
   fetchAllPropertyData: (callback) => {
-    db.readAllProperties((err, propertyData) => {
-      if (err) {
-        callback(err);
-      }
       db.readAllComparableHomes((err, comparableHomesData) => {
         if (err) {
           callback(err);
@@ -21,14 +17,12 @@ module.exports = {
             return; 
           }
           var data = {
-            propertyData: propertyData, 
             comparableHomesData: comparableHomesData,
             localHomesData: localHomesData,
           };
           callback(null, data); 
         });
       });
-    });
   },
   fetchSinglePropertyData: (id, callback) => {
     console.log('ID ON MODEL IS ', id);

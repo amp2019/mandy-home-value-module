@@ -8,7 +8,7 @@ const key = require('./newRelicConfig.js')
  */
 exports.config = {
   /**
-   * Array of application names.
+   * Array o f application names.
    */
   app_name: ['Home Value'],
   /**

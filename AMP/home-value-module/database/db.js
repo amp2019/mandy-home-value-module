@@ -2,6 +2,21 @@ const mongoose = require('mongoose');
 var faker = require('faker');
 // mongoose.connect('mongodb+srv://john:zillowtalk@zillow-talk-db-ujzgi.mongodb.net/test?retryWrites=true');
 mongoose.connect('mongodb://localhost/homes');
+mongoose.connect('mongodb://root:password@ec2-35-172-136-164.compute-1.amazonaws.com/homes', (err) => {
+  if (err) {
+    console.log('CANNOT CONNECT MONGOOSE', err);
+  }
+});
+
+var redis = require("redis"),
+    client = redis.createClient();
+ 
+// if you'd like to select database 3, instead of 0 (default), call
+// client.select(3, function() { /* ... */ });
+ 
+client.on("error", function (err) {
+    console.log("Error in redis " + err);
+});
 
 // Initialize mongodb schema
 const Schema = mongoose.Schema;
@@ -63,16 +78,9 @@ let LocalHomes = mongoose.model('LocalHomes', localHomes);
 
 // Query to grab data for all properties 
 module.exports = {
-  readAllProperties: (callback) => {
-    Property.find((err, data) => {
-      callback(err, data);
-    }).setOptions({
-      limit: 99
-    });
-  }, 
   // Query to grab data for comparableHomes 
   readAllComparableHomes: (callback) => {
-    let query = ComparableHomes.aggregate([{$sample: {size: 10}}]);
+    let query = ComparableHomes.find().limit(10);
     query.exec( (err, data) => {
       if (err) {
         console.log('DB err', err);
@@ -84,7 +92,7 @@ module.exports = {
   }, 
   // Query to grab data for localhomes 
   readAllLocalHomes: (callback) => {
-    let query = LocalHomes.aggregate([{$sample: {size: 10}}]);
+    let query = LocalHomes.find().limit(10);
     query.exec( (err, data) => {
       if (err) {
         console.log('DB err', err);
@@ -98,16 +106,32 @@ module.exports = {
   readSingleProperty: (id, callback) => {
     let propId = id.toString();
     // console.log('propid !!', typeof propId);
-    let query = Property.find({"_id": propId});
-    query.exec( (err, data) => {
+
+    client.get(propId, (err, reply) => {
       if (err) {
-        console.log('MONGO err', err);
+        console.log('ERR in client', err);
         callback(err, null);
+
+      } else if (reply) {
+        callback(null, reply);
+
       } else {
-        console.log('!!!!!!!!!!', data);
-        callback(null, data);
+        let query = Property.find({"_id": propId});
+        query.exec( (err, data) => {
+          if (err) {
+            console.log('MONGO err', err);
+            callback(err, null);
+          } else {
+            console.log('!!!!!!!!!!', data);
+            client.set(propId, JSON.stringify(data), () => {
+              callback(null, data);
+            });
+            // callback(null, data);
+          }
+        });
       }
     });
+
   },
   // finds home property by ID, if already exists, update all fields
   // else create a new entry

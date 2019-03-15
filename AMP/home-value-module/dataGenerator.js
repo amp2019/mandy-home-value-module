@@ -34,7 +34,7 @@ function generateRandomData(userContext, events, done) {
   streetAddress = faker.address.streetAddress();
   priceSqft = numberWithCommas(faker.random.number({'min': 1200, 'max': 2500})), 
   saleToList = faker.random.number({'min': 91, 'max': 105});
-  url = `https://s3-us-west-1.amazonaws.com/zillow-talk-home-component/large${i}.jpg`;
+  url = `https://s3-us-west-1.amazonaws.com/zillow-talk-home-component/large${i%100 + 1}.jpg`;
 
 
   // add variables to virtual user's context:
